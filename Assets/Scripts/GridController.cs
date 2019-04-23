@@ -26,33 +26,33 @@ public class GridController : MonoBehaviour
         Zones = new GameObject();
         Zones.transform.position.Set(0, 0, 0);
 
-        List<Button> buttons = FindObjectsOfType<Button>().ToList();
-        Button startOverButton = buttons.ElementAt(0);
-        Button helpButton = buttons.ElementAt(1);
-        startOverButton.onClick.AddListener(() => {
-            if (GameOver)
-            {
-                SceneManager.LoadScene(0);
-                GameOver = false;
-            }
-            else
-            {
-                int index = 0;
-                while (index < Zones.transform.childCount)
-                {
-                    var zone = Zones.transform.GetChild(index++);
-                    int lotIndex = 0;
-                    while (lotIndex < zone.childCount)
-                    {
-                        var lot = zone.GetChild(lotIndex++);
-                        lot.GetChild(0).gameObject.SetActive(false);
-                        lot.GetChild(1).gameObject.SetActive(false);
-                        lot.GetChild(2).gameObject.SetActive(false);
-                    }
+        //List<Button> buttons = FindObjectsOfType<Button>().ToList();
+        //Button startOverButton = buttons.ElementAt(0);
+        //Button helpButton = buttons.ElementAt(1);
+        //startOverButton.onClick.AddListener(() => {
+        //    if (GameOver)
+        //    {
+        //        SceneManager.LoadScene(0);
+        //        GameOver = false;
+        //    }
+        //    else
+        //    {
+        //        int index = 0;
+        //        while (index < Zones.transform.childCount)
+        //        {
+        //            var zone = Zones.transform.GetChild(index++);
+        //            int lotIndex = 0;
+        //            while (lotIndex < zone.childCount)
+        //            {
+        //                var lot = zone.GetChild(lotIndex++);
+        //                lot.GetChild(0).gameObject.SetActive(false);
+        //                lot.GetChild(1).gameObject.SetActive(false);
+        //                lot.GetChild(2).gameObject.SetActive(false);
+        //            }
 
-                }
-            }
-        });
+        //        }
+        //    }
+        //});
         GameObject RedZone = new GameObject("RedZone");
         GameObject BlueZone = new GameObject("BlueZone");
         GameObject YellowZone = new GameObject("YellowZone");
@@ -217,7 +217,7 @@ public class GridController : MonoBehaviour
             {
                 yPos = 1.375f;
             }
-            building.transform.position = item;
+            building.transform.position = new Vector3(item.x, yPos, item.z);
             building.SetActive(true);
 
             var buildLot = lots.Where(lot => lot.transform.position == item).FirstOrDefault();
